@@ -1,0 +1,17 @@
+<h2>Lista de Treinos</h2>
+
+<!-- Formulário de cadastro -->
+<form (ngSubmit)="adicionarTreino()" style="margin-bottom: 20px;">
+  <input type="text" placeholder="Nome" [(ngModel)]="novoTreino.nome" name="nome" required>
+  <input type="text" placeholder="Tipo" [(ngModel)]="novoTreino.tipo" name="tipo" required>
+  <input type="number" placeholder="Duração (min)" [(ngModel)]="novoTreino.duracao" name="duracao" required>
+  <button type="submit">Adicionar</button>
+</form>
+
+<!-- Lista de treinos -->
+<ul>
+  <li *ngFor="let treino of treinos">
+    <strong>{{ treino.nome }}</strong> - {{ treino.tipo }} - {{ treino.duracao }} min
+    <button (click)="removerTreino(treino.id)">Excluir</button>
+  </li>
+</ul>

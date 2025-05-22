@@ -1,0 +1,17 @@
+<h2>Plano Alimentar</h2>
+
+<!-- Formulário -->
+<form (ngSubmit)="adicionarRefeicao()" style="margin-bottom: 20px;">
+  <input type="text" placeholder="Nome da refeição" [(ngModel)]="novaRefeicao.nome" name="nome" required>
+  <input type="text" placeholder="Horário" [(ngModel)]="novaRefeicao.horario" name="horario" required>
+  <input type="number" placeholder="Calorias" [(ngModel)]="novaRefeicao.calorias" name="calorias" required>
+  <button type="submit">Adicionar</button>
+</form>
+
+<!-- Lista -->
+<ul>
+  <li *ngFor="let r of refeicoes">
+    <strong>{{ r.nome }}</strong> - {{ r.horario }} - {{ r.calorias }} kcal
+    <button (click)="removerRefeicao(r.id)">Excluir</button>
+  </li>
+</ul>
