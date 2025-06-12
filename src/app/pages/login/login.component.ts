@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,18 +7,32 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  email: string = '';
-  senha: string = '';
+export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  formLogin!: FormGroup;
 
-  entrar() {
-    if (this.email && this.senha) {
-      // Simulação de login
-      this.router.navigate(['/dashboard']);
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.formLogin = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+
+  logar(): void {
+    const email = this.formLogin.value.email;
+    const senha = this.formLogin.value.senha;
+
+    
+    if (email === 'teste@fitlife.com' && senha === '123456') {
+     
+      this.router.navigate(['/painel']);
     } else {
-      alert('Preencha todos os campos');
+      alert('E-mail ou senha inválidos.');
     }
   }
 }

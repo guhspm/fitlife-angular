@@ -1,20 +1,29 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Treino } from '../models/treino';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TreinoService {
+  private apiUrl = 'http://localhost:3000/treinos';
 
-  private treinos: Treino[] = [
-    { id: 1, nome: 'Corrida', tipo: 'Cardio', duracao: 30 },
-    { id: 2, nome: 'Musculação', tipo: 'Força', duracao: 45 },
-    { id: 3, nome: 'HIIT', tipo: 'Cardio', duracao: 20 }
-  ];
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
+  getTreinos(): Observable<Treino[]> {
+    return this.http.get<Treino[]>(this.apiUrl);
+  }
 
-  getTreinos(): Treino[] {
-    return this.treinos;
+  addTreino(treino: Treino): Observable<Treino> {
+    return this.http.post<Treino>(this.apiUrl, treino);
+  }
+
+  updateTreino(id: number, treino: Treino): Observable<Treino> {
+    return this.http.put<Treino>(`${this.apiUrl}/${id}`, treino);
+  }
+
+  deleteTreino(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

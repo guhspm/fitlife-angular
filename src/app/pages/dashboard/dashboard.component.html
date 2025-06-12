@@ -1,1 +1,36 @@
-<p>dashboard works!</p>
+<app-navbar></app-navbar>
+
+<div class="relative min-h-screen bg-black text-white px-6 py-12">
+
+  <img
+    src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=1920&q=80"
+    alt="Dashboard Fitness"
+    class="absolute inset-0 w-full h-full object-cover opacity-10"
+  />
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+
+    <h1 class="text-4xl font-bold mb-2">Dashboard FitLife</h1>
+    <p class="text-gray-300 mb-10">Resumo da sua jornada fitness até agora.</p>
+
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+      <div class="bg-white/10 backdrop-blur p-6 rounded-2xl border border-white/20 shadow-md hover:scale-105 transition">
+        <p class="text-lg">Refeições Registradas</p>
+        <p class="text-3xl font-bold">9</p>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur p-6 rounded-2xl border border-white/20 shadow-md hover:scale-105 transition">
+        <p class="text-lg">Treinos da Semana</p>
+        <p class="text-3xl font-bold">5</p>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur p-6 rounded-2xl border border-white/20 shadow-md hover:scale-105 transition">
+        <p class="text-lg">Dias Ativos no Mês</p>
+        <p class="text-3xl font-bold">12</p>
+      </div>
+    </div>
+
+    <p class="mt-12 text-center text-sm text-gray-400">"Consistência é mais importante que intensidade. Continue no caminho!"</p>
+  </div>
+</div>

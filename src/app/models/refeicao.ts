@@ -1,6 +1,5 @@
 export interface Refeicao {
-  id: number;
+  id?: number;
   nome: string;
-  horario: string; // Ex: "Café da manhã", "Almoço"
-  calorias: number;
+  descricao: string;
 }

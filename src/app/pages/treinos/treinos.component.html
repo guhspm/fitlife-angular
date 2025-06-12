@@ -1,17 +1,29 @@
-<h2>Lista de Treinos</h2>
+<app-navbar></app-navbar>
 
-<!-- Formulário de cadastro -->
-<form (ngSubmit)="adicionarTreino()" style="margin-bottom: 20px;">
-  <input type="text" placeholder="Nome" [(ngModel)]="novoTreino.nome" name="nome" required>
-  <input type="text" placeholder="Tipo" [(ngModel)]="novoTreino.tipo" name="tipo" required>
-  <input type="number" placeholder="Duração (min)" [(ngModel)]="novoTreino.duracao" name="duracao" required>
-  <button type="submit">Adicionar</button>
-</form>
+<div class="relative min-h-screen bg-black text-white px-6 py-12">
+  <img
+    src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80"
+    alt=""
+    class="absolute inset-0 w-full h-full object-cover opacity-10"
+  />
 
-<!-- Lista de treinos -->
-<ul>
-  <li *ngFor="let treino of treinos">
-    <strong>{{ treino.nome }}</strong> - {{ treino.tipo }} - {{ treino.duracao }} min
-    <button (click)="removerTreino(treino.id)">Excluir</button>
-  </li>
-</ul>
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <h1 class="text-4xl font-bold mb-2">Plano Semanal de Treinos</h1>
+    <p class="text-gray-300 mb-10">Consulte seus treinos e mantenha a constância!</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white/10 p-6 rounded-2xl border border-white/20" *ngFor="let dia of ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']; let i = index">
+        <h2 class="text-xl font-bold mb-2">{{ dia }}</h2>
+        <ul class="text-sm text-gray-300 space-y-1 mb-4">
+          <li><strong>Treino:</strong> {{ ['Cardio + Core', 'Força Superior', 'HIIT', 'Força Inferior', 'Mobilidade + Yoga', 'Corrida longa', 'Descanso'][i] }}</li>
+          <li><strong>Duração:</strong> {{ ['40', '50', '30', '50', '45', '60', '0'][i] }} min</li>
+        </ul>
+        <div class="flex justify-end">
+          <button class="text-sm bg-white text-black px-4 py-1 rounded hover:bg-gray-200 transition">Editar</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-10 text-center text-sm text-gray-400">"Você não precisa ser o melhor, só precisa ser melhor que ontem."</p>
+  </div>
+</div>

@@ -1,37 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import { Refeicao } from 'src/app/models/refeicao';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { RefeicaoService } from 'src/app/services/refeicao.service';
+import { Refeicao } from 'src/app/models/refeicao';
 
 @Component({
   selector: 'app-refeicoes',
-  templateUrl: './refeicoes.component.html',
-  styleUrls: ['./refeicoes.component.css']
+  templateUrl: './refeicoes.component.html'
 })
 export class RefeicoesComponent implements OnInit {
-
   refeicoes: Refeicao[] = [];
+  formRefeicao!: FormGroup;
 
-  novaRefeicao: Refeicao = {
-    id: 0,
-    nome: '',
-    horario: '',
-    calorias: 0
-  };
-
-  constructor(private refeicaoService: RefeicaoService) { }
+  constructor(
+    private fb: FormBuilder,
+    private refeicaoService: RefeicaoService
+  ) {}
 
   ngOnInit(): void {
-    this.refeicoes = this.refeicaoService.getRefeicoes();
+    this.formRefeicao = this.fb.group({
+      nome: [''],
+      descricao: ['']
+    });
+
+    this.buscarRefeicoes();
+  }
+
+  buscarRefeicoes(): void {
+    this.refeicaoService.getRefeicoes().subscribe(refs => {
+      this.refeicoes = refs;
+    });
   }
 
   adicionarRefeicao(): void {
-    const novoId = this.refeicoes.length > 0 ? Math.max(...this.refeicoes.map(r => r.id)) + 1 : 1;
-    const nova = { ...this.novaRefeicao, id: novoId };
-    this.refeicoes.push(nova);
-    this.novaRefeicao = { id: 0, nome: '', horario: '', calorias: 0 };
+    const novaRef = this.formRefeicao.value;
+    this.refeicaoService.addRefeicao(novaRef).subscribe(() => {
+      this.formRefeicao.reset();
+      this.buscarRefeicoes();
+    });
   }
 
   removerRefeicao(id: number): void {
-    this.refeicoes = this.refeicoes.filter(r => r.id !== id);
+    this.refeicaoService.deleteRefeicao(id).subscribe(() => {
+      this.buscarRefeicoes();
+    });
   }
 }

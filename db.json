@@ -1,0 +1,18 @@
+{
+  "treinos": [
+    {
+      "id": "1",
+      "nome": "Corrida",
+      "tipo": "Cardio",
+      "duracao": 40
+    }
+  ],
+  "refeicoes": [
+    {
+      "id": "1",
+      "nome": "Café com pão integral",
+      "descricao": "Pão integral, ovo mexido, banana",
+      "calorias": 250
+    }
+  ]
+}

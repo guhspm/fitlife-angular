@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,20 +7,25 @@ import { Router } from '@angular/router';
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
-export class CadastroComponent {
-  nome: string = '';
-  email: string = '';
-  senha: string = '';
+export class CadastroComponent implements OnInit {
+  formCadastro!: FormGroup;
 
-  constructor(private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
-  cadastrar() {
-    if (this.nome && this.email && this.senha) {
-      // Simula cadastro
-      alert('Cadastro realizado com sucesso!');
-      this.router.navigate(['/login']);
-    } else {
-      alert('Preencha todos os campos');
-    }
+  ngOnInit(): void {
+    this.formCadastro = this.fb.group({
+      nome: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+
+  cadastrar(): void {
+    if (this.formCadastro.invalid) return;
+
+    const usuario = this.formCadastro.value;
+
+    localStorage.setItem('usuarioFitLife', JSON.stringify(usuario));
+    this.router.navigate(['/login']);
   }
 }

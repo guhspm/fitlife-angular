@@ -1,20 +1,29 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Refeicao } from '../models/refeicao';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RefeicaoService {
+  private apiUrl = 'http://localhost:3000/refeicoes';
 
-  private refeicoes: Refeicao[] = [
-    { id: 1, nome: 'Ovos e pão integral', horario: 'Café da manhã', calorias: 350 },
-    { id: 2, nome: 'Frango e arroz integral', horario: 'Almoço', calorias: 550 },
-    { id: 3, nome: 'Iogurte e frutas', horario: 'Lanche da tarde', calorias: 250 }
-  ];
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
+  getRefeicoes(): Observable<Refeicao[]> {
+    return this.http.get<Refeicao[]>(this.apiUrl);
+  }
 
-  getRefeicoes(): Refeicao[] {
-    return this.refeicoes;
+  addRefeicao(refeicao: Refeicao): Observable<Refeicao> {
+    return this.http.post<Refeicao>(this.apiUrl, refeicao);
+  }
+
+  updateRefeicao(id: number, refeicao: Refeicao): Observable<Refeicao> {
+    return this.http.put<Refeicao>(`${this.apiUrl}/${id}`, refeicao);
+  }
+
+  deleteRefeicao(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
