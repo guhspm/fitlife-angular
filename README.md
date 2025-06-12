@@ -1,27 +1,49 @@
-# Fitlife
+# FitLife 🏋️‍♀️🥗
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.11.
+**FitLife** é um aplicativo web para acompanhamento de treinos e plano alimentar, desenvolvido como projeto final da disciplina de Desenvolvimento Web Front-End.
 
-## Development server
+## 🔍 Sobre o Projeto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+O sistema simula uma plataforma para usuários que desejam visualizar sua rotina de treinos e refeições. O app oferece uma experiência visual moderna, minimalista e totalmente responsiva, com foco em usabilidade e estética.
 
-## Code scaffolding
+## 🧑‍💻 Funcionalidades
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Tela de **Login e Cadastro**
+- Painel com resumo do progresso
+- Listagem de **treinos organizados por dia da semana**
+- Cards de **refeições diárias com composição e calorias**
+- Design em **preto e branco com transparência**, simulando um app premium
+- Botões estilizados com **efeito hover**
+- Organização de componentes por boas práticas do Angular
 
-## Build
+## 🛠 Tecnologias Utilizadas
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Angular
+- TailwindCSS
+- JSON Server (simulando backend)
+- HTML / TypeScript
+- Git & GitHub
 
-## Running unit tests
+## 🗂 Estrutura de Telas
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. **Login**
+2. **Cadastro**
+3. **Dashboard**
+4. **Treinos**
+5. **Refeições**
 
-## Running end-to-end tests
+## 📁 Como executar localmente
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+# Clone o repositório
+git clone https://github.com/SEU_USUARIO/fitlife.git
+cd fitlife
 
-## Further help
+# Instale as dependências
+npm install
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Rode o projeto Angular
+ng serve
+
+# Em outro terminal, rode o JSON Server
+json-server --watch db.json
